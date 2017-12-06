@@ -45,6 +45,7 @@ public class ColorsActivity extends AppCompatActivity {
         WordAdapter itemsAdapter =
                 new WordAdapter(this, R.layout.list_item, colors);
 
+        // Each object has it's own list_item.xml with the id list
         ListView listView = (ListView) findViewById(R.id.list); // the view is called list
 
         listView.setAdapter(itemsAdapter);

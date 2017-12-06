@@ -17,12 +17,39 @@ package com.example.android.miwok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class FamilyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_family);
+        setContentView(R.layout.word_list);
+
+        ArrayList<Word> colors = new ArrayList<>();
+
+        colors.add(new Word("one", "lutti"));
+        colors.add(new Word("two", "tooty"));
+        colors.add(new Word("two", "tooty"));
+        colors.add(new Word("three", "tooty"));
+        colors.add(new Word("four", "tooty"));
+        colors.add(new Word("five", "tooty"));
+        colors.add(new Word("six", "tooty"));
+        colors.add(new Word("seven", "tooty"));
+        colors.add(new Word("eight", "tooty"));
+        colors.add(new Word("nine", "tooty"));
+        colors.add(new Word("ten", "na'aacha"));
+
+        WordAdapter itemsAdapter =
+                new WordAdapter(this, R.layout.list_item, colors);
+
+        // Each object has it's own list_item.xml with the id list
+        ListView listView = (ListView) findViewById(R.id.list); // the view is called list
+
+        listView.setAdapter(itemsAdapter);
     }
+
+
 }
