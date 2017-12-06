@@ -32,17 +32,16 @@ public class NumbersActivity extends AppCompatActivity {
 
         ArrayList<Word> words = new ArrayList<>();
 
-        words.add(new Word("one", "lutti"));
-        words.add(new Word("two", "tooty"));
-        words.add(new Word("two", "tooty"));
-        words.add(new Word("three", "tooty"));
-        words.add(new Word("four", "tooty"));
-        words.add(new Word("five", "tooty"));
-        words.add(new Word("six", "tooty"));
-        words.add(new Word("seven", "tooty"));
-        words.add(new Word("eight", "tooty"));
-        words.add(new Word("nine", "tooty"));
-        words.add(new Word("ten", "na'aacha"));
+        words.add(new Word("one", "lutti", R.drawable.number_one));
+        words.add(new Word("two", "tooty", R.drawable.number_two));
+        words.add(new Word("three", "tooty", R.drawable.number_four));
+        words.add(new Word("four", "tooty", R.drawable.number_five));
+        words.add(new Word("five", "tooty", R.drawable.number_six));
+        words.add(new Word("six", "tooty", R.drawable.number_seven));
+        words.add(new Word("seven", "tooty", R.drawable.number_eight));
+        words.add(new Word("eight", "tooty", R.drawable.number_nine));
+        words.add(new Word("nine", "tooty", R.drawable.number_ten));
+        words.add(new Word("ten", "na'aacha", R.drawable.number_three));
 
 
 
@@ -54,7 +53,7 @@ public class NumbersActivity extends AppCompatActivity {
         // This list item layout contains a single {@link TextView}, which the adapter will set to
         // display a single word.
         WordAdapter itemsAdapter =
-                new WordAdapter(this, R.layout.list_item, words);
+                new WordAdapter(this, R.layout.list_item, words, R.color.category_numbers);
 
         // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the

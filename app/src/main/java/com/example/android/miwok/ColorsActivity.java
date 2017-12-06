@@ -30,20 +30,20 @@ public class ColorsActivity extends AppCompatActivity {
 
         ArrayList<Word> colors = new ArrayList<>();
 
-        colors.add(new Word("one", "lutti"));
-        colors.add(new Word("two", "tooty"));
-        colors.add(new Word("two", "tooty"));
-        colors.add(new Word("three", "tooty"));
-        colors.add(new Word("four", "tooty"));
-        colors.add(new Word("five", "tooty"));
-        colors.add(new Word("six", "tooty"));
-        colors.add(new Word("seven", "tooty"));
-        colors.add(new Word("eight", "tooty"));
-        colors.add(new Word("nine", "tooty"));
-        colors.add(new Word("ten", "na'aacha"));
+        colors.add(new Word("one", "lutti", R.drawable.number_one));
+        colors.add(new Word("two", "tooty", R.drawable.number_two));
+        colors.add(new Word("three", "tooty", R.drawable.number_four));
+        colors.add(new Word("four", "tooty", R.drawable.number_five));
+        colors.add(new Word("five", "tooty", R.drawable.number_six));
+        colors.add(new Word("six", "tooty", R.drawable.number_seven));
+        colors.add(new Word("seven", "tooty", R.drawable.number_eight));
+        colors.add(new Word("eight", "tooty", R.drawable.number_nine));
+        colors.add(new Word("nine", "tooty", R.drawable.number_ten));
+        colors.add(new Word("ten", "na'aacha", R.drawable.number_three));
+
 
         WordAdapter itemsAdapter =
-                new WordAdapter(this, R.layout.list_item, colors);
+                new WordAdapter(this, R.layout.list_item, colors, R.color.category_colors);
 
         // Each object has it's own list_item.xml with the id list
         ListView listView = (ListView) findViewById(R.id.list); // the view is called list

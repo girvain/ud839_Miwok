@@ -28,22 +28,22 @@ public class PhrasesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
-        ArrayList<Word> colors = new ArrayList<>();
+        ArrayList<Word> phrases = new ArrayList<>();
 
-        colors.add(new Word("one", "lutti"));
-        colors.add(new Word("two", "tooty"));
-        colors.add(new Word("two", "tooty"));
-        colors.add(new Word("three", "tooty"));
-        colors.add(new Word("four", "tooty"));
-        colors.add(new Word("five", "tooty"));
-        colors.add(new Word("six", "tooty"));
-        colors.add(new Word("seven", "tooty"));
-        colors.add(new Word("eight", "tooty"));
-        colors.add(new Word("nine", "tooty"));
-        colors.add(new Word("ten", "na'aacha"));
+        phrases.add(new Word("one", "lutti"));
+        phrases.add(new Word("two", "tooty"));
+        phrases.add(new Word("two", "tooty"));
+        phrases.add(new Word("three", "tooty"));
+        phrases.add(new Word("four", "tooty"));
+        phrases.add(new Word("five", "tooty"));
+        phrases.add(new Word("six", "tooty"));
+        phrases.add(new Word("seven", "tooty"));
+        phrases.add(new Word("eight", "tooty"));
+        phrases.add(new Word("nine", "tooty"));
+        phrases.add(new Word("ten", "na'aacha"));
 
         WordAdapter itemsAdapter =
-                new WordAdapter(this, R.layout.list_item, colors);
+                new WordAdapter(this, R.layout.list_item, phrases, R.color.category_phrases);
 
         // Each object has it's own list_item.xml with the id list
         ListView listView = (ListView) findViewById(R.id.list); // the view is called list

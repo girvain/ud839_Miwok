@@ -10,12 +10,27 @@ public class Word {
 
     private String mDefaultTranslation;
     private String miwokTranslation;
-    private ImageView imageView;
+    private int imageResourceId = NO_IMAGE_PROVIDED;
+    private static final int NO_IMAGE_PROVIDED = -1;
+
 
     public Word(String wordInEnglish, String wordInMiwok) {
         this.mDefaultTranslation = wordInEnglish;
         this.miwokTranslation = wordInMiwok;
-        this.imageView =
+    }
+
+    public Word(String mDefaultTranslation, String miwokTranslation, int imageResourceId) {
+        this.mDefaultTranslation = mDefaultTranslation;
+        this.miwokTranslation = miwokTranslation;
+        this.imageResourceId = imageResourceId;
+    }
+
+    public int getImageResourceId() {
+        return imageResourceId;
+    }
+
+    public void setImageResourceId(int imageResourceId) {
+        this.imageResourceId = imageResourceId;
     }
 
     public String getmDefaultTranslation() {
@@ -32,5 +47,11 @@ public class Word {
 
     public void setMiwokTranslation(String miwokTranslation) {
         this.miwokTranslation = miwokTranslation;
+    }
+
+
+    // AMAZING !!!
+    public boolean hasImage() {
+        return imageResourceId != NO_IMAGE_PROVIDED;
     }
 }
