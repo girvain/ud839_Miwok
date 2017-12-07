@@ -15,33 +15,40 @@
  */
 package com.example.android.miwok;
 
+import android.app.LauncherActivity;
+import android.media.MediaPlayer;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
 
-
+    private MediaPlayer mMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
-        ArrayList<Word> words = new ArrayList<>();
+        final ArrayList<Word> numbers = new ArrayList<>();
 
-        words.add(new Word("one", "lutti", R.drawable.number_one));
-        words.add(new Word("two", "tooty", R.drawable.number_two));
-        words.add(new Word("three", "tooty", R.drawable.number_four));
-        words.add(new Word("four", "tooty", R.drawable.number_five));
-        words.add(new Word("five", "tooty", R.drawable.number_six));
-        words.add(new Word("six", "tooty", R.drawable.number_seven));
-        words.add(new Word("seven", "tooty", R.drawable.number_eight));
-        words.add(new Word("eight", "tooty", R.drawable.number_nine));
-        words.add(new Word("nine", "tooty", R.drawable.number_ten));
-        words.add(new Word("ten", "na'aacha", R.drawable.number_three));
+        numbers.add(new Word("one", "lutti", R.drawable.number_one, R.raw.number_one));
+        numbers.add(new Word("two", "tooty", R.drawable.number_two, R.raw.number_two));
+        numbers.add(new Word("three", "tooty", R.drawable.number_three, R.raw.number_three));
+        numbers.add(new Word("three", "tooty", R.drawable.number_four, R.raw.number_four));
+        numbers.add(new Word("four", "tooty", R.drawable.number_five, R.raw.number_five));
+        numbers.add(new Word("five", "tooty", R.drawable.number_six, R.raw.number_six));
+        numbers.add(new Word("six", "tooty", R.drawable.number_seven, R.raw.number_seven));
+        numbers.add(new Word("seven", "tooty", R.drawable.number_eight, R.raw.number_eight));
+        numbers.add(new Word("eight", "tooty", R.drawable.number_nine, R.raw.number_nine));
+        numbers.add(new Word("nine", "tooty", R.drawable.number_ten, R.raw.number_ten));
+        numbers.add(new Word("ten", "na'aacha", R.drawable.number_three, R.raw.number_three));
 
 
 
@@ -53,7 +60,7 @@ public class NumbersActivity extends AppCompatActivity {
         // This list item layout contains a single {@link TextView}, which the adapter will set to
         // display a single word.
         WordAdapter itemsAdapter =
-                new WordAdapter(this, R.layout.list_item, words, R.color.category_numbers);
+                new WordAdapter(this, R.layout.list_item, numbers, R.color.category_numbers);
 
         // Find the {@link ListView} object in the view hierarchy of the {@link Activity}.
         // There should be a {@link ListView} with the view ID called list, which is declared in the
@@ -65,6 +72,19 @@ public class NumbersActivity extends AppCompatActivity {
         // Do this by calling the setAdapter method on the {@link ListView} object and pass in
         // 1 argument, which is the {@link ArrayAdapter} with the variable name itemsAdapter.
         listView.setAdapter(itemsAdapter);
+
+
+        // The setOnItemClick listener allows any item of this view to generate an event, magical!
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int wordAudioId = numbers.get(i).getAudioId();
+                Log.v("NumbersActivity", "current word: " + numbers.get(i));
+                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, wordAudioId);
+                mMediaPlayer.start();
+            }
+        });
+
 
         /* The first way \/
         // get a ref to the layout in NumbersActivity.
