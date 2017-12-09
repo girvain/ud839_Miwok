@@ -36,17 +36,17 @@ public class PhrasesActivity extends AppCompatActivity {
 
         final ArrayList<Word> phrases = new ArrayList<>();
 
-        phrases.add(new Word("one", "lutti", R.raw.number_one));
-        phrases.add(new Word("two", "tooty", R.raw.number_two));
-        phrases.add(new Word("two", "tooty", R.raw.number_three));
-        phrases.add(new Word("three", "tooty",R.raw.number_four));
-        phrases.add(new Word("four", "tooty",R.raw.number_five));
-        phrases.add(new Word("five", "tooty", R.raw.number_six));
-        phrases.add(new Word("six", "tooty", R.raw.number_seven));
-        phrases.add(new Word("seven", "tooty", R.raw.number_eight));
-        phrases.add(new Word("eight", "tooty", R.raw.number_nine));
-        phrases.add(new Word("nine", "tooty", R.raw.number_ten));
-        phrases.add(new Word("ten", "na'aacha", R.raw.number_one));
+        phrases.add(new Word("one", "lutti", R.raw.phrase_are_you_coming));
+        phrases.add(new Word("two", "tooty", R.raw.phrase_how_are_you_feeling));
+        phrases.add(new Word("two", "tooty", R.raw.phrase_im_feeling_good));
+        phrases.add(new Word("three", "tooty",R.raw.phrase_where_are_you_going));
+        phrases.add(new Word("four", "tooty",R.raw.phrase_lets_go));
+        phrases.add(new Word("five", "tooty", R.raw.phrase_what_is_your_name));
+        phrases.add(new Word("six", "tooty", R.raw.phrase_my_name_is));
+        phrases.add(new Word("seven", "tooty", R.raw.phrase_yes_im_coming));
+        phrases.add(new Word("eight", "tooty", R.raw.phrase_come_here));
+        phrases.add(new Word("nine", "tooty", R.raw.phrase_how_are_you_feeling));
+        phrases.add(new Word("ten", "na'aacha", R.raw.phrase_im_feeling_good));
 
         WordAdapter itemsAdapter =
                 new WordAdapter(this, R.layout.list_item, phrases, R.color.category_phrases);
@@ -76,6 +76,11 @@ public class PhrasesActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void onStop(Bundle SavedInstanceState) {
+        super.onStop();
+        releaseMediaPlayer();
     }
 
     /**

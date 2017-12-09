@@ -16,6 +16,8 @@
 package com.example.android.miwok;
 
 import android.app.LauncherActivity;
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -30,11 +32,22 @@ import java.util.ArrayList;
 public class NumbersActivity extends AppCompatActivity {
 
     private MediaPlayer mMediaPlayer;
+    private AudioManager mAudioManager;
+
+    AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int i) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
+
+        AudioManager am = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+
 
         final ArrayList<Word> numbers = new ArrayList<>();
 
@@ -49,8 +62,6 @@ public class NumbersActivity extends AppCompatActivity {
         numbers.add(new Word("eight", "tooty", R.drawable.number_nine, R.raw.number_nine));
         numbers.add(new Word("nine", "tooty", R.drawable.number_ten, R.raw.number_ten));
         numbers.add(new Word("ten", "na'aacha", R.drawable.number_three, R.raw.number_three));
-
-
 
 
 
@@ -82,18 +93,39 @@ public class NumbersActivity extends AppCompatActivity {
                 Log.v("NumbersActivity", "current word: " + numbers.get(i));
                 mMediaPlayer = MediaPlayer.create(NumbersActivity.this, wordAudioId);
                 mMediaPlayer.start();
+
+                // this method is to set the listener to listen for events from media player
+                // that tell it the audio file is done. Takes an on complete listener object, I've
+                // done this anonomously, oosh.
+                mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mediaPlayer) {
+                        releaseMediaPlayer();
+                    }
+                });
             }
         });
+    }
 
+    public void onStop(Bundle SavedInstanceState) {
+        super.onStop();
+        releaseMediaPlayer();
+    }
 
-        /* The first way \/
-        // get a ref to the layout in NumbersActivity.
-        LinearLayout rootView = (LinearLayout) findViewById(R.id.rootView);
-        // Creates a TextView (BRAND NEW!) then add data to it.
-        TextView wordView = new TextView(this);
-        rootView.addView(wordView);
-        wordView.setText(words.get(0));
-        */
+    /**
+     * Clean up the media player by releasing its resources.
+     */
+    private void releaseMediaPlayer() {
+        // If the media player is not null, then it may be currently playing a sound.
+        if (mMediaPlayer != null) {
+            // Regardless of the current state of the media player, release its resources
+            // because we no longer need it.
+            mMediaPlayer.release();
 
+            // Set the media player back to null. For our code, we've decided that
+            // setting the media player to null is an easy way to tell that the media player
+            // is not configured to play an audio file at the moment.
+            mMediaPlayer = null;
+        }
     }
 }
