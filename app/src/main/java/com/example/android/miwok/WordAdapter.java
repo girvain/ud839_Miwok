@@ -51,7 +51,6 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
 
-
         if (currentWord.hasImage()) {
             imageView.setImageResource(currentWord.getImageResourceId());
 
@@ -67,6 +66,10 @@ public class WordAdapter extends ArrayAdapter<Word> {
         int color = ContextCompat.getColor(getContext(), mColorResourceId);
         // Set the background color of the text container View
         textContainer.setBackgroundColor(color);
+
+        // get a ref to the play button
+        //ImageView imageViewPlay = (ImageView) listItemView.findViewById(R.id.play_button);
+        //imageViewPlay.setImageResource(R.drawable.ic_play_arrow_white_24dp);
 
         // Return the whole list item layout (containing 2 TextViews) so that it can be shown in
         // the ListView.
